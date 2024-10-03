@@ -1,0 +1,17 @@
+{
+  "name": "ativ_planets",
+  "version": "1.0.0",
+  "description": "Projeto para resolução da atividade de Back-End",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Senai",
+    "node.js",
+    "JavaScript",
+    "Back-End"
+  ],
+  "author": "Turco",
+  "license": "MIT"
+}
