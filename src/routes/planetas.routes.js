@@ -1,103 +1,92 @@
 import { Router } from "express";
 
-const filmesRoutes = Router();
+const planetasRoutes = Router();
 
-let filmes = [
+let planetas = [
     {
-      id: Number(Math.floor(Math.random() * 99)) + 1,
-      titulo: "Meu irmão urso",
-      genero: "Animação",
-      emCartaz: false
-    },
-    {
-      id: Number(Math.floor(Math.random() * 99)) + 1,
-      titulo: "DeadPool and Wolverine",
-      genero: "Ação",
-      emCartaz: true,
-    },
-    {
-      id: Number(Math.floor(Math.random() * 99)) + 1,
-      titulo: "É assim que acaba",
-      genero: "Romance",
-      emCartaz: true,
+      id: Number(Math.floor(Math.random() * 999999)) + 1,
+      nome: "DevLand",
+      temperatura: 14.0,
+      agua: false, //Indicação de existência de água
+      atm: ["JS", "NODE", "VS", "Code"],
     }
-  ];
+];
 
-  //Rota para buscar todos os elementos do array filmes
-filmesRoutes.get("/", (req, res) => {
-  return res.status(201).json(filmes);
+  //Rota para buscar todos os elementos do array planetas
+planetasRoutes.get("/", (req, res) => {
+  return res.status(201).json(planetas);
 });
 
-//Rota para criar novo filme
-filmesRoutes.post("/", (req, res) => {
+//Rota para criar novo planeta
+planetasRoutes.post("/", (req, res) => {
   const { titulo, genero, emCartaz} = req.body
 
-  const novoFilme = {
+  const novoplaneta = {
     id: Number(Math.floor(Math.random() * 99)) + 1,
     titulo,
     genero,
     emCartaz,
   }
 
-  filmes.push(novoFilme);
-  return res.status(201).send(filmes);
+  planetas.push(novoplaneta);
+  return res.status(201).send(planetas);
 });
 
-//Rota para buscar um elemento específico do array filmes
-filmesRoutes.get("/:id", (req, res) => {
+//Rota para buscar um elemento específico do array planetas
+planetasRoutes.get("/:id", (req, res) => {
   const { id } = req.params;
 
-  const filme = filmes.find((movie) => movie.id === Number(id));
+  const planeta = planetas.find((movie) => movie.id === Number(id));
 
 
-  if (!filme) {
-    return res.status(404).send({ message: "Filme não encontrado!" });
+  if (!planeta) {
+    return res.status(404).send({ message: "planeta não encontrado!" });
   }
 
-  return res.status(200).send(filme);
+  return res.status(200).send(planeta);
 });
 
-//Rota para editar um filme
-filmesRoutes.put("/:id", (req, res) => {
+//Rota para editar um planeta
+planetasRoutes.put("/:id", (req, res) => {
   const { id } = req.params
 
-  const filme = filmes.find((movie) => movie.id === Number(id)
+  const planeta = planetas.find((movie) => movie.id === Number(id)
   );
 
 
-  if (!filme) {
-    return res.status(404).send({ message: "Filme não encontrado!" });
+  if (!planeta) {
+    return res.status(404).send({ message: "planeta não encontrado!" });
   };
 
   const { titulo, genero, emCartaz} = req.body
 
-  filme.titulo = titulo
-  filme.genero = genero
-  filme.emCartaz = emCartaz
+  planeta.titulo = titulo
+  planeta.genero = genero
+  planeta.emCartaz = emCartaz
 
   return res.status(200).send({
-    message: "Filme atualizado!",
-    filme,
+    message: "planeta atualizado!",
+    planeta,
   })
 
-});//Rota para deletar um filme
-filmesRoutes.delete("/:id", (req, res) => {
+});//Rota para deletar um planeta
+planetasRoutes.delete("/:id", (req, res) => {
   const { id } = req.params
 
-  const filme = filmes.find((movie) => movie.id === Number(id)
+  const planeta = planetas.find((movie) => movie.id === Number(id)
   );
 
-  if (!filme) {
-    return res.status(404).send({ message: "Filme não encontrado!" });
+  if (!planeta) {
+    return res.status(404).send({ message: "planeta não encontrado!" });
   }
 
-  filmes = filmes.filter((movie) => movie.id !== Number(id));
+  planetas = planetas.filter((movie) => movie.id !== Number(id));
 
 
   return res.status(200).send({
-    message: "Filme deletado!",
-    filme,
+    message: "planeta deletado!",
+    planeta,
   })
 })
 
-export default filmesRoutes;
+export default planetasRoutes;
