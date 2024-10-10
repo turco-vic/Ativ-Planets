@@ -17,7 +17,7 @@ planetasRoutes.get("/", (req, res) => {
   return res.status(201).json(planetas);
 });
 
-//Rota para cadAstrar novo planeta
+//Rota para cadastrar novo planeta
 planetasRoutes.post("/", (req, res) => {
   const {nome, temperatura, agua, atm} = req.body
 
@@ -53,7 +53,6 @@ planetasRoutes.get("/:id", (req, res) => {
   const { id } = req.params;
 
   const planeta = planetas.find((movie) => movie.id === Number(id));
-
 
   if (!planeta) {
     return res.status(404).send({ message: "planeta não encontrado!" });
